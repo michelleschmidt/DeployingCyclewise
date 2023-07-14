@@ -1,7 +1,7 @@
 steps:
-  # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/pcinfos/hello/phpmyadmin:${SHORT_SHA}', '.']
+  # Docker Compose Build
+  - name: 'gcr.io/cloud-builders/docker-compose'
+    args: ['up', '--build', '-d']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -10,3 +10,4 @@ steps:
 # Store images in Google Artifact Registry
 images:
   - us-central1-docker.pkg.dev/${PROJECT_ID}/hello/myimage:${SHORT_SHA}
+
